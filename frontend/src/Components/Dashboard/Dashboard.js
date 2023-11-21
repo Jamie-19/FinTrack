@@ -47,19 +47,19 @@ function Dashboard() {
                         <h2 className="salary-title">Min <span>Salary</span>Max</h2>
                         <div className="salary-item">
                             <p>
-                                ${Math.min(...incomes.map(item => item.amount))}
+                                {dollar}{Math.min(...incomes.map(item => item.amount))}
                             </p>
                             <p>
-                                ${Math.max(...incomes.map(item => item.amount))}
+                                {dollar}{Math.max(...incomes.map(item => item.amount))}
                             </p>
                         </div>
                         <h2 className="salary-title">Min <span>Expense</span>Max</h2>
                         <div className="salary-item">
                             <p>
-                                ${Math.min(...expenses.map(item => item.amount))}
+                                {dollar}{Math.min(...expenses.map(item => item.amount))}
                             </p>
                             <p>
-                                ${Math.max(...expenses.map(item => item.amount))}
+                                {dollar}{Math.max(...expenses.map(item => item.amount))}
                             </p>
                         </div>
                     </div>
