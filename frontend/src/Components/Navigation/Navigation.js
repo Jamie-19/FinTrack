@@ -1,39 +1,49 @@
-import React, { useState } from 'react'
-import styled from 'styled-components'
-import avatar from '../../img/avatar.png'
-import { signout } from '../../utils/Icons'
-import { menuItems } from '../../utils/menuItems'
+import React from 'react';
+import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
+import avatar from '../../img/avatar.png';
+import { signout } from '../../utils/Icons';
+import { menuItems } from '../../utils/menuItems';
 
-function Navigation({active, setActive}) {
-    
-    return (
-        <NavStyled>
-            <div className="user-con">
-                <img src={avatar} alt="" />
-                <div className="text">
-                    <h2>Mike</h2>
-                    <p>Your Money</p>
-                </div>
-            </div>
-            <ul className="menu-items">
-                {menuItems.map((item) => {
-                    return <li
-                        key={item.id}
-                        onClick={() => setActive(item.id)}
-                        className={active === item.id ? 'active': ''}
-                    >
-                        {item.icon}
-                        <span>{item.title}</span>
-                    </li>
-                })}
-            </ul>
-            <div className="bottom-nav">
-                <li>
-                    {signout} Sign Out
-                </li>
-            </div>
-        </NavStyled>
-    )
+function Navigation({ active, setActive }) {
+  const navigate = useNavigate();
+
+  const handleSignOut = () => {
+    // Implement any sign-out logic here if needed
+    // For simplicity, let's navigate to the login page
+    navigate('/');
+  };
+
+  return (
+    <NavStyled>
+      <div className="user-con">
+        <img src={avatar} alt="" />
+        <div className="text">
+          <h2>Mike</h2>
+          <p>Your Money</p>
+        </div>
+      </div>
+      <ul className="menu-items">
+        {menuItems.map((item) => (
+          <li
+            key={item.id}
+            onClick={() => setActive(item.id)}
+            className={active === item.id ? 'active' : ''}
+          >
+            <a href={item.link}>
+              {item.icon}
+              <span>{item.title}</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+      <div className="bottom-nav">
+        <button onClick={handleSignOut}>
+          {signout} Sign Out
+        </button>
+      </div>
+    </NavStyled>
+  );
 }
 
 const NavStyled = styled.nav`

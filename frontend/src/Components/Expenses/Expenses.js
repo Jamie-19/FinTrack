@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect ,useState} from 'react'
 import styled from 'styled-components'
 import { useGlobalContext } from '../../context/globalContext';
 import { InnerLayout } from '../../styles/Layouts';
@@ -6,15 +6,19 @@ import Form from '../Form/Form';
 import IncomeItem from '../IncomeItem/IncomeItem';
 import ExpenseForm from './ExpenseForm';
 import { indian } from '../../utils/Icons';
+import Navigation from '../Navigation/Navigation';
 
 function Expenses() {
     const {addIncome,expenses, getExpenses, deleteExpense, totalExpenses} = useGlobalContext()
+    const [active, setActive] = useState(1)
 
     useEffect(() =>{
         getExpenses()
     }, [])
     return (
         <ExpenseStyled>
+             <div className='flexj'>
+                <Navigation active={active} setActive={setActive} />
             <InnerLayout>
                 <h1>Expenses</h1>
                 <h2 className="total-income">Total Expense: <span>{indian}{totalExpenses()}</span></h2>
@@ -24,29 +28,33 @@ function Expenses() {
                     </div>
                     <div className="incomes">
                         {expenses.map((income) => {
-                            const {_id, title, amount, date, category, description, type} = income;
-                            console.log(income)
+                            const { _id, title, amount, date, category, description, type } = income;
+                            console.log(income);
                             return <IncomeItem
                                 key={_id}
-                                id={_id} 
-                                title={title} 
-                                description={description} 
-                                amount={amount} 
-                                date={date} 
+                                id={_id}
+                                title={title}
+                                description={description}
+                                amount={amount}
+                                date={date}
                                 type={type}
-                                category={category} 
+                                category={category}
                                 indicatorColor="var(--color-green)"
-                                deleteItem={deleteExpense}
-                            />
+                                deleteItem={deleteExpense} />;
                         })}
                     </div>
                 </div>
             </InnerLayout>
+            </div>
         </ExpenseStyled>
     )
 }
 
 const ExpenseStyled = styled.div`
+.flexj{
+    display: flex;
+    justify-content: space-between;
+}
     display: flex;
     overflow: auto;
     .total-income{
@@ -66,6 +74,10 @@ const ExpenseStyled = styled.div`
             font-weight: 800;
             color: var(--color-green);
         }
+    }
+    .flexp{
+        display: flex;
+
     }
     .income-content{
         display: flex;

@@ -1,19 +1,24 @@
-import React, { useEffect } from 'react'
+import React, { useEffect,useState } from 'react'
 import styled from 'styled-components'
 import { useGlobalContext } from '../../context/globalContext';
 import { InnerLayout } from '../../styles/Layouts';
 import Form from '../Form/Form';
 import { indian } from '../../utils/Icons';
 import IncomeItem from '../IncomeItem/IncomeItem';
+import Navigation from '../Navigation/Navigation';
 
 function Income() {
     const {addIncome,incomes, getIncomes, deleteIncome, totalIncome} = useGlobalContext()
+    const [active, setActive] = useState(1)
 
     useEffect(() =>{
         getIncomes()
     }, [])
+
     return (
         <IncomeStyled>
+            <div className='flexj'>     
+            <Navigation active={active} setActive={setActive} />
             <InnerLayout>
                 <h1>Incomes</h1>
                 <h2 className="total-income">Total Income: <span>{indian}{totalIncome()}</span></h2>
@@ -23,28 +28,32 @@ function Income() {
                     </div>
                     <div className="incomes">
                         {incomes.map((income) => {
-                            const {_id, title, amount, date, category, description, type} = income;
+                            const { _id, title, amount, date, category, description, type } = income;
                             return <IncomeItem
                                 key={_id}
-                                id={_id} 
-                                title={title} 
-                                description={description} 
-                                amount={amount} 
-                                date={date} 
+                                id={_id}
+                                title={title}
+                                description={description}
+                                amount={amount}
+                                date={date}
                                 type={type}
-                                category={category} 
+                                category={category}
                                 indicatorColor="var(--color-green)"
-                                deleteItem={deleteIncome}
-                            />
+                                deleteItem={deleteIncome} />;
                         })}
                     </div>
                 </div>
             </InnerLayout>
+            </div>
         </IncomeStyled>
     )
 }
 
 const IncomeStyled = styled.div`
+.flexj{
+    display: flex;
+    justify-content: space-between;
+}
     display: flex;
     overflow: auto;
     .total-income{

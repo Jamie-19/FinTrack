@@ -8,9 +8,13 @@ import Dashboard from './Components/Dashboard/Dashboard';
 import Income from './Components/Income/Income'
 import Expenses from './Components/Expenses/Expenses';
 import { useGlobalContext } from './context/globalContext';
+import Login from './Components/login/login';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 
-function App() {
+
+export default function App() {
   const [active, setActive] = useState(1)
+  
 
   const global = useGlobalContext()
   console.log(global);
@@ -18,7 +22,7 @@ function App() {
   const displayData = () => {
     switch(active){
       case 1:
-        return <Dashboard />
+        return <Login />
       case 2:
         return <Dashboard />
       case 3:
@@ -37,11 +41,19 @@ function App() {
   return (
     <AppStyled bg={bg} className="App">
       {orbMemo}
-      <MainLayout>
-        <Navigation active={active} setActive={setActive} />
+      <MainLayout>      
         <main>
-          {displayData()}
-        </main>
+        <Router>
+      <Routes>
+        <Route path="/" element={<Login />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+
+        <Route path="/income" element={<Income />} />
+
+        <Route path="/expense" element={<Expenses />} />
+      </Routes>
+    </Router>        
+    </main>
       </MainLayout>
     </AppStyled>
   );
@@ -63,5 +75,3 @@ const AppStyled = styled.div`
     }
   }
 `;
-
-export default App;

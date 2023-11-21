@@ -1,12 +1,16 @@
-import React, { useEffect } from 'react'
+import React, { useEffect,useState } from 'react'
 import styled from 'styled-components'
 import { useGlobalContext } from '../../context/globalContext';
 import History from '../../History/History';
 import { InnerLayout } from '../../styles/Layouts';
 import { indian } from '../../utils/Icons';
 import Chart from '../Chart/Chart';
+import Navigation from '../Navigation/Navigation';
+
 
 function Dashboard() {
+    const [active, setActive] = useState(1)
+
     const {totalExpenses,incomes, expenses, totalIncome, totalBalance, getIncomes, getExpenses } = useGlobalContext()
 
     useEffect(() => {
@@ -15,7 +19,9 @@ function Dashboard() {
     }, [])
 
     return (
-        <DashboardStyled>
+        <DashboardStyled>   
+            <div className='flexj'>    
+            <Navigation active={active} setActive={setActive}/>
             <InnerLayout>
                 <h1>All Transactions</h1>
                 <div className="stats-con">
@@ -65,11 +71,16 @@ function Dashboard() {
                     </div>
                 </div>
             </InnerLayout>
+            </div>
         </DashboardStyled>
     )
 }
 
 const DashboardStyled = styled.div`
+        .flexj{
+            display: flex;
+            justify-content: space-between;
+        }
     .stats-con{
         display: grid;
         grid-template-columns: repeat(5, 1fr);
