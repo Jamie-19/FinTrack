@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { useGlobalContext } from '../../context/globalContext';
 import History from '../../History/History';
 import { InnerLayout } from '../../styles/Layouts';
-import { dollar } from '../../utils/Icons';
+import { indian } from '../../utils/Icons';
 import Chart from '../Chart/Chart';
 
 function Dashboard() {
@@ -25,19 +25,19 @@ function Dashboard() {
                             <div className="income">
                                 <h2>Total Income</h2>
                                 <p>
-                                    {dollar} {totalIncome()}
+                                    {indian} {totalIncome()}
                                 </p>
                             </div>
                             <div className="expense">
                                 <h2>Total Expense</h2>
                                 <p>
-                                    {dollar} {totalExpenses()}
+                                    {indian} {totalExpenses()}
                                 </p>
                             </div>
                             <div className="balance">
                                 <h2>Total Balance</h2>
                                 <p>
-                                    {dollar} {totalBalance()}
+                                    {indian} {totalBalance()}
                                 </p>
                             </div>
                         </div>
@@ -47,19 +47,19 @@ function Dashboard() {
                         <h2 className="salary-title">Min <span>Salary</span>Max</h2>
                         <div className="salary-item">
                             <p>
-                                {dollar}{Math.min(...incomes.map(item => item.amount))}
+                                {indian}{Math.min(...incomes.map(item => item.amount))}
                             </p>
                             <p>
-                                {dollar}{Math.max(...incomes.map(item => item.amount))}
+                                {indian}{Math.max(...incomes.map(item => item.amount))}
                             </p>
                         </div>
                         <h2 className="salary-title">Min <span>Expense</span>Max</h2>
                         <div className="salary-item">
                             <p>
-                                {dollar}{Math.min(...expenses.map(item => item.amount))}
+                                {indian}{Math.min(...expenses.map(item => item.amount))}
                             </p>
                             <p>
-                                {dollar}{Math.max(...expenses.map(item => item.amount))}
+                                {indian}{Math.max(...expenses.map(item => item.amount))}
                             </p>
                         </div>
                     </div>
