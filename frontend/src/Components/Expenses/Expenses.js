@@ -2,19 +2,18 @@ import React, { useEffect ,useState} from 'react'
 import styled from 'styled-components'
 import { useGlobalContext } from '../../context/globalContext';
 import { InnerLayout } from '../../styles/Layouts';
-import Form from '../Form/Form';
 import IncomeItem from '../IncomeItem/IncomeItem';
 import ExpenseForm from './ExpenseForm';
 import { indian } from '../../utils/Icons';
 import Navigation from '../Navigation/Navigation';
 
 function Expenses() {
-    const {addIncome,expenses, getExpenses, deleteExpense, totalExpenses} = useGlobalContext()
+    const {expenses, getExpenses, deleteExpense, totalExpenses} = useGlobalContext()
     const [active, setActive] = useState(1)
 
     useEffect(() =>{
         getExpenses()
-    }, [])
+    },)
     return (
         <ExpenseStyled>
              <div className='flexj'>

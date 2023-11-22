@@ -14,6 +14,11 @@ function Navigation({ active, setActive }) {
     navigate('/');
   };
 
+  const handleMenuItemClick = (item) => {
+    setActive(item.id);
+    navigate(item.link);
+  };
+
   return (
     <NavStyled>
       <div className="user-con">
@@ -27,7 +32,7 @@ function Navigation({ active, setActive }) {
         {menuItems.map((item) => (
           <li
             key={item.id}
-            onClick={() => setActive(item.id)}
+            onClick={() => handleMenuItemClick(item)} 
             className={active === item.id ? 'active' : ''}
           >
             <a href={item.link}>
@@ -45,6 +50,7 @@ function Navigation({ active, setActive }) {
     </NavStyled>
   );
 }
+
 
 const NavStyled = styled.nav`
     padding: 2rem 1.5rem;

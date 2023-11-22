@@ -9,7 +9,7 @@ import Expenses from './Components/Expenses/Expenses';
 import { useGlobalContext } from './context/globalContext';
 import Login from './Components/login/login';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
-
+import Transactions from './Components/Transactions/Transactions';
 
 export default function App() {
   const [active, setActive] = useState(1)
@@ -47,7 +47,7 @@ export default function App() {
         <Route path="/" element={<Login />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/income" element={<Income />} />
-
+        <Route path="/transactions" element={<Transactions />} />
         <Route path="/expense" element={<Expenses />} />
       </Routes>
     </Router>        
