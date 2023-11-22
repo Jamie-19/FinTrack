@@ -28,6 +28,7 @@ const Register = () => {
         // Redirect to the login page after successful registration
         navigate('/');
       } else {
+        alert("Registration failed")
         console.error(data.error);
       }
     } catch (error) {
