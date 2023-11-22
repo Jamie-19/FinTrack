@@ -4,7 +4,14 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
 const register = async (req, res) => {
+  const{ username, password } = req.body
+  const user = User({
+    username,
+    password
+  })
   try {
+    if(!username || !password){
+      return res.status(400).json({message: 'All fields are required!'})}
     const { username, password } = req.body;
     const hashedPassword = await bcrypt.hash(password, 10);
     const user = new User({ username, password: hashedPassword });

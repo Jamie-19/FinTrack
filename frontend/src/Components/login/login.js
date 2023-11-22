@@ -28,6 +28,7 @@ const Login = () => {
         // Redirect to the dashboard
         navigate('/dashboard');
       } else {
+        alert("Login failed")
         console.error(data.error);
       }
     } catch (error) {
