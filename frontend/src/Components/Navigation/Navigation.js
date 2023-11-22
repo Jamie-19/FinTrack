@@ -11,7 +11,7 @@ function Navigation({ active, setActive }) {
   const handleSignOut = () => {
     // Implement any sign-out logic here if needed
     // For simplicity, let's navigate to the login page
-    navigate('/');
+    navigate('/login');
   };
 
   const handleMenuItemClick = (item) => {

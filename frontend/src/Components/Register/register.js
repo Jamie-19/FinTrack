@@ -1,16 +1,16 @@
-// src/Components/Login/Login.js
+// src/Components/Register/Register.js
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-const Login = () => {
+const Register = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
-  const handleLogin = async () => {
+  const handleRegister = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/v1/login', {
+      const response = await fetch('http://localhost:5000/api/v1/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -19,13 +19,13 @@ const Login = () => {
       });
 
       const data = await response.json();
-      console.log(data + "dadsadaad");
+      console.log(data);
 
       if (response.ok) {
         // Save the token to local storage or state and perform any necessary actions
-        console.log('Login successful');
-        // Redirect to the dashboard
-        navigate('/dashboard');
+        console.log('Registration successful');
+        // Redirect to the login page after successful registration
+        navigate('/login');
       } else {
         console.error(data.error);
       }
@@ -35,8 +35,8 @@ const Login = () => {
   };
 
   return (
-    <LoginStyled>
-      <h2>Login</h2>
+    <RegisterStyled>
+      <h2>Register</h2>
       <form>
         <label htmlFor="username">Username:</label>
         <input
@@ -52,16 +52,16 @@ const Login = () => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <p>Don't have an account? <Link to="/register">Register</Link></p>
-        <button type="button" onClick={handleLogin}>
-          Login
+        <p>Already have an account? <Link to="/login">Login</Link></p>
+        <button type="button" onClick={handleRegister}>
+          Register
         </button>
       </form>
-    </LoginStyled>
+    </RegisterStyled>
   );
 };
 
-const LoginStyled = styled.div`
+const RegisterStyled = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -75,4 +75,4 @@ const LoginStyled = styled.div`
   }
 `;
 
-export default Login;
+export default Register;
