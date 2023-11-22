@@ -22,6 +22,7 @@ const Login = () => {
       console.log(data + "dadsadaad");
 
       if (response.ok) {
+        alert("Login successful")
         // Save the token to local storage or state and perform any necessary actions
         console.log('Login successful');
         // Redirect to the dashboard
