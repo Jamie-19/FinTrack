@@ -25,7 +25,7 @@ const Register = () => {
         // Save the token to local storage or state and perform any necessary actions
         console.log('Registration successful');
         // Redirect to the login page after successful registration
-        navigate('/login');
+        navigate('/');
       } else {
         console.error(data.error);
       }
@@ -52,7 +52,7 @@ const Register = () => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <p>Already have an account? <Link to="/login">Login</Link></p>
+        <p>Already have an account? <Link to="/">Login</Link></p>
         <button type="button" onClick={handleRegister}>
           Register
         </button>

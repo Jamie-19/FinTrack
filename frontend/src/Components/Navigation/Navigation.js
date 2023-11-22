@@ -4,14 +4,15 @@ import { useNavigate } from 'react-router-dom';
 import avatar from '../../img/avatar.png';
 import { signout } from '../../utils/Icons';
 import { menuItems } from '../../utils/menuItems';
+import { useGlobalContext } from '../../context/globalContext';
 
 function Navigation({ active, setActive }) {
   const navigate = useNavigate();
+  const { user } = useGlobalContext();
 
+  const { pathname } = window.location;
   const handleSignOut = () => {
-    // Implement any sign-out logic here if needed
-    // For simplicity, let's navigate to the login page
-    navigate('/login');
+    navigate('/');
   };
 
   const handleMenuItemClick = (item) => {
@@ -24,8 +25,15 @@ function Navigation({ active, setActive }) {
       <div className="user-con">
         <img src={avatar} alt="" />
         <div className="text">
-          <h2>James</h2>
-          <p></p>
+          <h2>
+            {user?.firstName} {user?.lastName}
+          </h2>
+          <p>
+            {pathname === '/dashboard'
+              ? 'Welcome to your dashboard'
+              : 'Welcome to your profile'}
+
+          </p>
         </div>
       </div>
       <ul className="menu-items">
