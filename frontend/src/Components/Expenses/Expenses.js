@@ -72,7 +72,7 @@ const ExpenseStyled = styled.div`
         span{
             font-size: 2.5rem;
             font-weight: 800;
-            color: var(--color-green);
+            color: red;
         }
     }
     .flexp{

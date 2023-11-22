@@ -8,6 +8,7 @@ import Chart from '../Chart/Chart';
 import Navigation from '../Navigation/Navigation';
 
 
+
 function Dashboard() {
     const [active, setActive] = useState(1)
 
@@ -28,43 +29,39 @@ function Dashboard() {
                     <div className="chart-con">
                         <Chart />
                         <div className="amount-con">
-                            <div className="income">
-                                <h2>Total Income</h2>
-                                <p>
-                                    {indian} {totalIncome()}
-                                </p>
-                            </div>
-                            <div className="expense">
-                                <h2>Total Expense</h2>
-                                <p>
-                                    {indian} {totalExpenses()}
-                                </p>
-                            </div>
-                            <div className="balance">
-                                <h2>Total Balance</h2>
-                                <p>
-                                    {indian} {totalBalance()}
-                                </p>
-                            </div>
+                        <BoxContainer>
+                        <div className="income">
+                            <h2>Total Income</h2>
+                            <p>{indian} {totalIncome()}</p>
+                        </div>
+                        <div className="expense">
+                            <h2>TotalExpense</h2>
+                            <p>{indian} {totalExpenses()}</p>
+                        </div>
+                        <div className="balance">
+                            <h2>Total Balance</h2>
+                            <p>{indian} {totalBalance()}</p>
+                        </div>
+                        </BoxContainer>
                         </div>
                     </div>
                     <div className="history-con">
                         <History />
                         <h2 className="salary-title">Min <span>Salary</span>Max</h2>
                         <div className="salary-item">
-                            <p>
+                            <p className="min-green">
                                 {indian}{Math.min(...incomes.map(item => item.amount))}
                             </p>
-                            <p>
+                            <p className="min-green">
                                 {indian}{Math.max(...incomes.map(item => item.amount))}
                             </p>
                         </div>
                         <h2 className="salary-title">Min <span>Expense</span>Max</h2>
                         <div className="salary-item">
-                            <p>
+                            <p className="min-red">
                                 {indian}{Math.min(...expenses.map(item => item.amount))}
                             </p>
-                            <p>
+                            <p className="min-red">
                                 {indian}{Math.max(...expenses.map(item => item.amount))}
                             </p>
                         </div>
@@ -96,6 +93,21 @@ const DashboardStyled = styled.div`
                 .income, .expense{
                     grid-column: span 2;
                 }
+                .income{
+                    
+                    background: #F6F9FC;
+                    p{
+                    color: var(--color-green);
+                    opacity: 0.6;}
+                }
+                
+                .expense{
+                    background: #F6F9FC;
+                    p{
+                    color: red;
+                    opacity: 0.6;
+                }
+            }
                 .income, .expense, .balance{
                     background: #FCF6F9;
                     border: 2px solid #FFFFFF;
@@ -103,7 +115,7 @@ const DashboardStyled = styled.div`
                     border-radius: 20px;
                     padding: 1rem;
                     p{
-                        font-size: 3.5rem;
+                        font-size: 3rem;
                         font-weight: 700;
                     }
                 }
@@ -115,9 +127,9 @@ const DashboardStyled = styled.div`
                     justify-content: center;
                     align-items: center;
                     p{
-                        color: var(--color-green);
-                        opacity: 0.6;
-                        font-size: 4.5rem;
+                        color: black;
+                        opacity: 1;
+                        font-size: 3rem;
                     }
                 }
             }
@@ -146,7 +158,15 @@ const DashboardStyled = styled.div`
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
-                p{
+                .min-red{
+                    color: red;
+                    opacity: 0.8;
+                    font-weight: 600;
+                    font-size: 1.6rem;
+                }
+                .min-green{
+                    color: var(--color-green);
+                    opacity: 0.8;
                     font-weight: 600;
                     font-size: 1.6rem;
                 }
@@ -154,5 +174,28 @@ const DashboardStyled = styled.div`
         }
     }
 `;
+
+const BoxContainer = styled.div`
+  display: flex;
+  gap: 1rem;
+  justify-content: space-around;
+  align-items: center;
+
+  .income,
+  .expense,
+  .balance {
+    text-align: center;
+  }
+
+  h2 {
+    font-size: 1.2rem; /* Adjust the font size as needed */
+  }
+
+  p {
+    font-size: 1rem; /* Adjust the font size as needed */
+    font-weight: bold; /* Optional: Adjust the font weight as needed */
+  }
+`;
+
 
 export default Dashboard

@@ -11,7 +11,7 @@ export const menuItems = [
         id: 2,
         title: "View Transactions",
         icon: transactions,
-        link: "/dashboard",
+        link: "/history",
     },
     {
         id: 3,
