@@ -55,3 +55,28 @@ exports.deleteExpense = async (req, res) =>{
             res.status(500).json({message: 'Server Error'})
         })
 }
+
+//edit expense
+exports.editExpense = async (req, res) => {
+    const { id } = req.params;
+    const { title, amount, category, description, date } = req.body;
+
+    try {
+        const expense = await ExpenseSchema.findByIdAndUpdate(id, {
+            title,
+            amount,
+            category,
+            description,
+            date,
+        }, { new: true });
+
+        if (!expense) {
+            return res.status(404).json({ message: 'Expense not found' });
+        }
+
+        res.status(200).json({ message: 'Expense Updated', expense });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Server Error' });
+    }
+};

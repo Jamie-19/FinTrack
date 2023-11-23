@@ -40,7 +40,14 @@ export const GlobalProvider = ({children}) => {
         }
       };
       
-
+      const editIncome = async (id, updatedIncome) => {
+        try {
+            await axios.put(`${BASE_URL}edit-income/${id}`, updatedIncome);
+            getIncomes();
+        } catch (error) {
+            console.error('An error occurred while editing income', error);
+        }
+    };
   
     const deleteIncome = async (id) => {
         const res  = await axios.delete(`${BASE_URL}delete-income/${id}`)
@@ -75,10 +82,21 @@ export const GlobalProvider = ({children}) => {
         console.log(response.data)
     }
 
+    const editExpense = async (id, updatedExpense) => {
+        try {
+
+            await axios.put(`${BASE_URL}edit-expense/${id}`, updatedExpense);
+            getExpenses();
+        } catch (error) {
+            console.error('An error occurred while editing expense', error);
+        }
+    };
+
     const deleteExpense = async (id) => {
         const res  = await axios.delete(`${BASE_URL}delete-expense/${id}`)
         getExpenses()
     }
+    
 
     const totalExpenses = () => {
         let totalIncome = 0;
@@ -124,6 +142,8 @@ export const GlobalProvider = ({children}) => {
             setError,
             user,
             setUserData,
+            editIncome,
+            editExpense
         }}>
             {children}
         </GlobalContext.Provider>

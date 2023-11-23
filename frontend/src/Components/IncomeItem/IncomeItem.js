@@ -1,8 +1,11 @@
 import React from 'react'
 import styled from 'styled-components'
 import { dateFormat } from '../../utils/dateFormat';
-import { bitcoin, book, calender, card, circle, clothing, comment, dollar, food, freelance, indian, medical, money, piggy, stocks, takeaway, trash, tv, users, yt } from '../../utils/Icons';
+import { bitcoin, book, calender, card, circle, clothing, comment, dollar, edit, food, freelance, indian, medical, money, piggy, stocks, takeaway, trash, tv, users, yt } from '../../utils/Icons';
 import Button from '../Button/Button';
+import { useState } from 'react';
+import Modal from '../Modal/Modal';
+import EditForm from '../Form/Editform';
 
 function IncomeItem({
     id,
@@ -15,6 +18,16 @@ function IncomeItem({
     indicatorColor,
     type
 }) {
+
+    const [isEditing, setIsEditing] = useState(false);
+
+    const handleEditClick = () => {
+        setIsEditing(true);
+    };
+
+    const handleEditClose = () => {
+        setIsEditing(false);
+    };
 
     const categoryIcon = () =>{
         switch(category) {
@@ -81,7 +94,7 @@ function IncomeItem({
                         </p>
                     </div>
                     <div className="btn-con">
-                        <Button 
+                        <Button
                             icon={trash}
                             bPad={'1rem'}
                             bRad={'50%'}
@@ -91,11 +104,39 @@ function IncomeItem({
                             hColor={'var(--color-green)'}
                             onClick={() => deleteItem(id)}
                         />
+                        <Button
+                            icon={edit}
+                            bPad={'1rem'}
+                            bRad={'50%'}
+                            bg={'var(--primary-color'}
+                            color={'#fff'}
+                            iColor={'#fff'}
+                            hColor={'var(--color-green)'}
+                            onClick={handleEditClick}
+                        />
                     </div>
                 </div>
             </div>
+
+            {/* Add a modal for editing */}
+            {isEditing && (
+                <Modal onClose={handleEditClose}>
+                    {/* Include your edit form inside the modal */}
+                    {/* Use the data of the current income for pre-filling the form */}
+                    <EditForm
+                        id={id}
+                        title={title}
+                        amount={amount}
+                        date={date}
+                        category={category}
+                        description={description}
+                        onClose={handleEditClose}
+                        type={type}
+                    />
+                </Modal>
+            )}
         </IncomeItemStyled>
-    )
+    );
 }
 
 const IncomeItemStyled = styled.div`
@@ -145,7 +186,10 @@ const IncomeItemStyled = styled.div`
                 background: ${props => props.indicator};
             }
         }
-
+        .btn-con{
+            display: flex;
+            gap: 1rem;
+        }
         .inner-content{
             display: flex;
             justify-content: space-between;

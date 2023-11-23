@@ -4,7 +4,7 @@ import DatePicker from 'react-datepicker'
 import "react-datepicker/dist/react-datepicker.css";
 import { useGlobalContext } from '../../context/globalContext';
 import Button from '../Button/Button';
-import { plus } from '../../utils/Icons';
+import { plus,edit } from '../../utils/Icons';
 import { useEffect } from 'react';
 
 
@@ -101,14 +101,6 @@ function Form() {
                     bg={'var(--color-accent'}
                     color={'#fff'}
                 />
-                <Button className="edit">
-                    name={'Edit Income'}
-                    icon={plus}
-                    bPad={'.8rem 1.6rem'}
-                    bRad={'30px'}
-                    bg={'var(--color-accent'}
-                    color={'#fff'}
-                    </Button>
             </div>
         </FormStyled>
     )
@@ -151,15 +143,16 @@ const FormStyled = styled.form`
             }
         }
     }
-    .edit{
-        &:hover{
-            background: red !important;
-        }
     .submit-btn{
         display: flex;
         flex-direction: row;
         gap: 1rem;
+        }
+        .edit-btn{
         
+            &:hover{
+                background: red!important;
+            }
         }
         button{
             box-shadow: 0px 1px 15px rgba(0, 0, 0, 0.06);

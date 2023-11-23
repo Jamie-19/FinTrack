@@ -54,3 +54,30 @@ exports.deleteIncome = async (req, res) =>{
             res.status(500).json({message: 'Server Error'})
         })
 }
+
+
+//edit income
+exports.editIncome = async (req, res) => {
+    const { id } = req.params;
+    const { title, amount, category, description, date } = req.body;
+
+    try {
+        const income = await IncomeSchema.findByIdAndUpdate(id, {
+            title,
+            amount,
+            category,
+            description,
+            date,
+        }, { new: true });
+
+        if (!income) {
+            return res.status(404).json({ message: 'Income not found' });
+        }
+
+        res.status(200).json({ message: 'Income Updated', income });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Server Error' });
+    }
+};
+

@@ -18,6 +18,7 @@ export const indian = <i className="fa-solid fa-indian-rupee-sign"></i>;
 export const calender = <i className="fa-solid fa-calendar"></i>;
 export const comment = <i className="fa-solid fa-comment"></i>;
 export const plus = <i className="fa-solid fa-plus"></i>;
+export const edit = <i className="fa-solid fa-edit"></i>;
 export const trash = <i className="fa-solid fa-trash"></i>;
 export const signout = <i className="fa-solid fa-right-from-bracket"></i>;
 export const takeaway = <i className="fa-solid fa-utensils"></i>;
