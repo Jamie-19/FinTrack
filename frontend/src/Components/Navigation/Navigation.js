@@ -26,7 +26,7 @@ function Navigation({ active, setActive }) {
         <img src={avatar} alt="" />
         <div className="text">
           <h2>
-            {user?.firstName} {user?.lastName}
+            
           </h2>
           <p>
             {pathname === '/dashboard'

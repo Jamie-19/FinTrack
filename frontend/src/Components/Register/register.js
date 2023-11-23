@@ -23,9 +23,7 @@ const Register = () => {
 
       if (response.ok) {
         alert("Registration successful")
-        // Save the token to local storage or state and perform any necessary actions
         console.log('Registration successful');
-        // Redirect to the login page after successful registration
         navigate('/');
       } else {
         alert("Registration failed")

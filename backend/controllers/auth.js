@@ -1,17 +1,22 @@
 // controllers/authController.js
-const User = require('../models/UserModel');
+const userSchema = require('../models/UserModel');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
 const register = async (req, res) => {
   const{ username, password } = req.body
-  const user = User({
+
+  const user = userSchema({
     username,
-    password
+    password,
   })
+
   try {
+   
     if(!username || !password){
-      return res.status(400).json({message: 'All fields are required!'})}
+      return res.status(400).json({message: 'All fields are required!'})
+  }
+
     const { username, password } = req.body;
     const hashedPassword = await bcrypt.hash(password, 10);
     const user = new User({ username, password: hashedPassword });
