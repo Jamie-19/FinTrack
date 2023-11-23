@@ -6,10 +6,12 @@ import { signout } from '../../utils/Icons';
 import { menuItems } from '../../utils/menuItems';
 import { useGlobalContext } from '../../context/globalContext';
 
+
+
 function Navigation({ active, setActive }) {
   const navigate = useNavigate();
-  const { user } = useGlobalContext();
 
+  const { user } = useGlobalContext();
   const { pathname } = window.location;
   const handleSignOut = () => {
     navigate('/');
@@ -26,7 +28,7 @@ function Navigation({ active, setActive }) {
         <img src={avatar} alt="" />
         <div className="text">
           <h2>
-            
+          {user ? user.username : ''}          
           </h2>
           <p>
             {pathname === '/dashboard'

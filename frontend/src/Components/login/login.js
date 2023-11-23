@@ -2,10 +2,12 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { useGlobalContext } from '../../context/globalContext';
 
 const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const { setUserData } = useGlobalContext();
   const navigate = useNavigate();
 
   const handleLogin = async () => {
@@ -19,16 +21,13 @@ const Login = () => {
       });
 
       const data = await response.json();
-      console.log(data + "dadsadaad");
 
       if (response.ok) {
-        alert("Login successful")
-        // Save the token to local storage or state and perform any necessary actions
-        console.log('Login successful');
-        // Redirect to the dashboard
+        alert('Login successful');
+        setUserData({ username: data.username }); 
         navigate('/dashboard');
       } else {
-        alert("Login failed")
+        alert('Login failed');
         console.error(data.error);
       }
     } catch (error) {
@@ -54,7 +53,9 @@ const Login = () => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <p>Don't have an account? <Link to="/register">Register</Link></p>
+        <p>
+          Don't have an account? <Link to="/register">Register</Link>
+        </p>
         <button type="button" onClick={handleLogin}>
           Login
         </button>

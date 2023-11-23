@@ -11,7 +11,14 @@ export const GlobalProvider = ({children}) => {
 
     const [incomes, setIncomes] = useState([])
     const [expenses, setExpenses] = useState([])
+    const [user, setUser] = useState(null)
     const [error, setError] = useState(null)
+
+
+
+    const setUserData = (userData) => {
+        setUser(userData);
+      };
 
     //calculate incomes
     const addIncome = async (income) => {
@@ -104,7 +111,9 @@ export const GlobalProvider = ({children}) => {
             totalBalance,
             transactionHistory,
             error,
-            setError
+            setError,
+            user,
+            setUserData,
         }}>
             {children}
         </GlobalContext.Provider>

@@ -1,23 +1,21 @@
 // controllers/authController.js
-const userSchema = require('../models/UserModel');
+const User = require('../models/UserModel');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
 const register = async (req, res) => {
   const{ username, password } = req.body
 
-  const user = userSchema({
+  const user = new User({
     username,
-    password,
+    password
   })
 
   try {
-   
-    if(!username || !password){
-      return res.status(400).json({message: 'All fields are required!'})
-  }
-
     const { username, password } = req.body;
+    if (!username || !password) {
+      return res.status(400).json({ error: 'All fields are required' });
+    }
     const hashedPassword = await bcrypt.hash(password, 10);
     const user = new User({ username, password: hashedPassword });
     await user.save();
@@ -30,11 +28,14 @@ const register = async (req, res) => {
 const login = async (req, res) => {
   try {
     const { username, password } = req.body;
+    if (!username || !password) {
+      return res.status(400).json({ error: 'All fields are required' });
+    }
     const user = await User.findOne({ username });
 
     if (user && (await bcrypt.compare(password, user.password))) {
-      const token = jwt.sign({ username }, 'secretKey', { expiresIn: '1h' });
-      res.json({ token });
+      const token = jwt.sign({ userId: user._id, username: user.username }, 'secretKey', { expiresIn: '1h' });
+      res.json({ token, username: user.username });
     } else {
       res.status(401).json({ error: 'Invalid credentials' });
     }
