@@ -22,7 +22,7 @@ function ExpenseForm() {
     useEffect(() => {
         inputState.userId = localStorage.getItem('userid')
      }
-     ,[])
+     ,)
 
     const { title, amount, date, category,description } = inputState;
 
@@ -31,17 +31,24 @@ function ExpenseForm() {
         setError('')
     }
 
-    const handleSubmit = e => {
-        e.preventDefault()
-        addExpense(inputState)
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+    
+        // Set userId in the inputState
+        inputState.userId = localStorage.getItem('userid');
+    
+        // Call the addIncome function with inputState
+        addExpense(inputState);
+    
+        // Reset the inputState
         setInputState({
             title: '',
             amount: '',
             date: '',
             category: '',
             description: '',
-        })
-    }
+        });
+    };
 
     return (
         <ExpenseFormStyled onSubmit={handleSubmit}>

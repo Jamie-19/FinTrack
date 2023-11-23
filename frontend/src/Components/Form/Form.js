@@ -4,12 +4,12 @@ import DatePicker from 'react-datepicker'
 import "react-datepicker/dist/react-datepicker.css";
 import { useGlobalContext } from '../../context/globalContext';
 import Button from '../Button/Button';
-import { plus,edit } from '../../utils/Icons';
+import { plus } from '../../utils/Icons';
 import { useEffect } from 'react';
 
 
 function Form() {
-    const {addIncome, getIncomes, error, setError} = useGlobalContext()
+    const {addIncome,error, setError} = useGlobalContext()
     const [inputState, setInputState] = useState({
         title: '',
         amount: '',
@@ -20,10 +20,10 @@ function Form() {
     })
 
     useEffect(() => {
-       inputState.userId = localStorage.getItem('userid')
-    }
-    ,[])
-    console.log(inputState.userId)
+        inputState.userId = localStorage.getItem('userid')
+     }
+     ,[])
+    console.log(inputState.userId);
 
 
     const { title, amount, date, category,description } = inputState;
@@ -33,17 +33,25 @@ function Form() {
         setError('')
     }
 
-    const handleSubmit = e => {
-        e.preventDefault()
-        addIncome(inputState)
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+    
+        // Set userId in the inputState
+        inputState.userId = localStorage.getItem('userid');
+    
+        // Call the addIncome function with inputState
+        addIncome(inputState);
+    
+        // Reset the inputState
         setInputState({
             title: '',
             amount: '',
             date: '',
             category: '',
             description: '',
-        })
-    }
+        });
+    };
+    
 
     return (
         <FormStyled onSubmit={handleSubmit}>

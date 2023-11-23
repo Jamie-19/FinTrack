@@ -148,8 +148,10 @@ function EditForm({
 
 const EditFormStyled = styled.form`
 display: flex;
-flex-direction: column;
+flex-direction: column; 
 gap: 2rem;
+margin-right: 2rem;
+background: white;
 input, textarea, select{
     font-family: inherit;
     font-size: inherit;
@@ -158,7 +160,7 @@ input, textarea, select{
     padding: .5rem 1rem;
     border-radius: 5px;
     border: 2px solid #fff;
-    background: transparent;
+    background:transparent;
     resize: none;
     box-shadow: 0px 1px 15px rgba(0, 0, 0, 0.06);
     color: rgba(34, 34, 96, 0.9);
@@ -186,12 +188,6 @@ input, textarea, select{
     display: flex;
     flex-direction: row;
     gap: 1rem;
-    }
-    .edit-btn{
-    
-        &:hover{
-            background: red!important;
-        }
     }
     button{
         box-shadow: 0px 1px 15px rgba(0, 0, 0, 0.06);

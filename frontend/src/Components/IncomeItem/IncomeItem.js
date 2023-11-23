@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { dateFormat } from '../../utils/dateFormat';
-import { bitcoin, book, calender, card, circle, clothing, comment, dollar, edit, food, freelance, indian, medical, money, piggy, stocks, takeaway, trash, tv, users, yt } from '../../utils/Icons';
+import { bitcoin, book, calender, card, circle, clothing, comment, edit, food, freelance, indian, medical, money, piggy, stocks, takeaway, trash, tv, users, yt } from '../../utils/Icons';
 import Button from '../Button/Button';
 import { useState } from 'react';
 import Modal from '../Modal/Modal';
