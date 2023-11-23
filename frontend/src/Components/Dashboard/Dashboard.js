@@ -11,13 +11,18 @@ import Navigation from '../Navigation/Navigation';
 
 function Dashboard() {
     const [active, setActive] = useState(1)
-
+ 
     const {totalExpenses,incomes, expenses, totalIncome, totalBalance, getIncomes, getExpenses } = useGlobalContext()
-
+    const [state, setState] = useState({
+        userId: ''
+    })
     useEffect(() => {
-        getIncomes()
-        getExpenses()
-    },)
+        setState({userId: localStorage.getItem('userid')})
+            getIncomes()
+            getExpenses()
+        
+    },[])
+
 
     return (
         <DashboardStyled>   
@@ -39,7 +44,7 @@ function Dashboard() {
                             <p>{indian} {totalExpenses()}</p>
                         </div>
                         <div className="balance">
-                            <h2>Total Balance</h2>
+                            <h2>TotalBalance</h2>
                             <p>{indian} {totalBalance()}</p>
                         </div>
                         </BoxContainer>

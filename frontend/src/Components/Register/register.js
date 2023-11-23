@@ -22,9 +22,11 @@ const Register = () => {
       console.log(data);
 
       if (response.ok) {
-        alert("Registration successful")
+        alert("Registration successful");
+        localStorage.setItem('userid', data.userId);
+        localStorage.setItem('username', data.username);
         console.log('Registration successful');
-        navigate('/');
+        navigate('/dashboard');
       } else {
         alert("Registration failed")
         console.error(data.error);

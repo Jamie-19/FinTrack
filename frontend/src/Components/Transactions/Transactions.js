@@ -41,7 +41,7 @@ function Transactions() {
   return (
     <TransactionsStyled>
       <div className='flexj'>
-        <Navigation active={active} setActive={setActive} />
+        <Navigation active={2} setActive={setActive} />
         <InnerLayout>
         <h2>Transaction History</h2>
         <div className="space">

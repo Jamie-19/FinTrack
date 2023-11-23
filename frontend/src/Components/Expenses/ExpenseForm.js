@@ -5,6 +5,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import { useGlobalContext } from '../../context/globalContext';
 import Button from '../Button/Button';
 import { plus } from '../../utils/Icons';
+import { useEffect } from 'react';
 
 
 function ExpenseForm() {
@@ -15,7 +16,13 @@ function ExpenseForm() {
         date: '',
         category: '',
         description: '',
+        userId: '',
     })
+
+    useEffect(() => {
+        inputState.userId = localStorage.getItem('userid')
+     }
+     ,[])
 
     const { title, amount, date, category,description } = inputState;
 

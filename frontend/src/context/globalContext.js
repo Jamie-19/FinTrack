@@ -28,13 +28,20 @@ export const GlobalProvider = ({children}) => {
             })
         getIncomes()
     }
-
     const getIncomes = async () => {
-        const response = await axios.get(`${BASE_URL}get-incomes`)
-        setIncomes(response.data)
-        console.log(response.data)
-    }
+        try {
+            const id= localStorage.getItem('userid')
+            console.log(id);
+          const response = await axios.get(`${BASE_URL}get-incomes?userid=${id}`);
+          setIncomes(response.data);
+          console.log(response.data);
+        } catch (error) {
+          console.error('An error occurred while fetching incomes', error);
+        }
+      };
+      
 
+  
     const deleteIncome = async (id) => {
         const res  = await axios.delete(`${BASE_URL}delete-income/${id}`)
         getIncomes()
@@ -52,6 +59,7 @@ export const GlobalProvider = ({children}) => {
 
     //calculate incomes
     const addExpense = async (income) => {
+
         const response = await axios.post(`${BASE_URL}add-expense`, income)
             .catch((err) =>{
                 setError(err.response.data.message)
@@ -60,7 +68,9 @@ export const GlobalProvider = ({children}) => {
     }
 
     const getExpenses = async () => {
-        const response = await axios.get(`${BASE_URL}get-expenses`)
+                    const id= localStorage.getItem('userid')
+            console.log(id);
+          const response = await axios.get(`${BASE_URL}get-expenses?userid=${id}`);
         setExpenses(response.data)
         console.log(response.data)
     }

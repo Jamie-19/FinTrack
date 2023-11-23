@@ -10,10 +10,11 @@ import { useGlobalContext } from '../../context/globalContext';
 
 function Navigation({ active, setActive }) {
   const navigate = useNavigate();
-
-  const { user } = useGlobalContext();
+  const username = localStorage.getItem('username');
+ 
   const { pathname } = window.location;
   const handleSignOut = () => {
+    localStorage.clear();
     navigate('/');
   };
 
@@ -28,7 +29,7 @@ function Navigation({ active, setActive }) {
         <img src={avatar} alt="" />
         <div className="text">
           <h2>
-          {user ? user.username : ''}          
+          {username ? username : 'User'}          
           </h2>
           <p>
             {pathname === '/dashboard'
@@ -74,6 +75,9 @@ const NavStyled = styled.nav`
     flex-direction: column;
     justify-content: space-between;
     gap: 2rem;
+    a{
+      text-decoration: none;
+    }
     .user-con{
         height: 100px;
         display: flex;

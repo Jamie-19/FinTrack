@@ -18,7 +18,7 @@ function Income() {
     return (
         <IncomeStyled>
             <div className='flexj'>     
-            <Navigation active={active} setActive={setActive} />
+            <Navigation active={3} setActive={setActive} />
             <InnerLayout>
                 <h1>Incomes</h1>
                 <h2 className="total-income">Total Income: <span>{indian}{totalIncome()}</span></h2>

@@ -24,6 +24,8 @@ const Login = () => {
 
       if (response.ok) {
         alert('Login successful');
+        localStorage.setItem('userid', data.userId);
+        localStorage.setItem('username', data.username);
         setUserData({ username: data.username }); 
         navigate('/dashboard');
       } else {

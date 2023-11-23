@@ -5,6 +5,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import { useGlobalContext } from '../../context/globalContext';
 import Button from '../Button/Button';
 import { plus } from '../../utils/Icons';
+import { useEffect } from 'react';
 
 
 function Form() {
@@ -15,7 +16,15 @@ function Form() {
         date: '',
         category: '',
         description: '',
+        userId: '',
     })
+
+    useEffect(() => {
+       inputState.userId = localStorage.getItem('userid')
+    }
+    ,[])
+    console.log(inputState.userId)
+
 
     const { title, amount, date, category,description } = inputState;
 
@@ -44,7 +53,7 @@ function Form() {
                     type="text" 
                     value={title}
                     name={'title'} 
-                    placeholder="Salary Title"
+                    placeholder="Income Title"
                     onChange={handleInput('title')}
                 />
             </div>
@@ -52,7 +61,7 @@ function Form() {
                 <input value={amount}  
                     type="text" 
                     name={'amount'} 
-                    placeholder={'Salary Amount'}
+                    placeholder={'Amount'}
                     onChange={handleInput('amount')} 
                 />
             </div>
@@ -81,7 +90,7 @@ function Form() {
                 </select>
             </div>
             <div className="input-control">
-                <textarea name="description" value={description} placeholder='Add A Reference' id="description" cols="30" rows="4" onChange={handleInput('description')}></textarea>
+                <textarea name="description" value={description} placeholder='Income Desciption' id="description" cols="30" rows="4" onChange={handleInput('description')}></textarea>
             </div>
             <div className="submit-btn">
                 <Button 
@@ -92,6 +101,14 @@ function Form() {
                     bg={'var(--color-accent'}
                     color={'#fff'}
                 />
+                <Button className="edit">
+                    name={'Edit Income'}
+                    icon={plus}
+                    bPad={'.8rem 1.6rem'}
+                    bRad={'30px'}
+                    bg={'var(--color-accent'}
+                    color={'#fff'}
+                    </Button>
             </div>
         </FormStyled>
     )
@@ -134,8 +151,16 @@ const FormStyled = styled.form`
             }
         }
     }
-
+    .edit{
+        &:hover{
+            background: red !important;
+        }
     .submit-btn{
+        display: flex;
+        flex-direction: row;
+        gap: 1rem;
+        
+        }
         button{
             box-shadow: 0px 1px 15px rgba(0, 0, 0, 0.06);
             &:hover{
@@ -143,5 +168,6 @@ const FormStyled = styled.form`
             }
         }
     }
+    
 `;
 export default Form
