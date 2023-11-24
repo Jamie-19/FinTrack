@@ -18,7 +18,6 @@ function IncomeItem({
     indicatorColor,
     type
 }) {
-
     const [isEditing, setIsEditing] = useState(false);
 
     const handleEditClick = () => {
@@ -149,6 +148,7 @@ const IncomeItemStyled = styled.div`
     gap: 1rem;
     width: 100%;
     color: #222260;
+    z-index: 1;
     .icon{
         width: 80px;
         height: 80px;
