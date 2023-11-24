@@ -75,7 +75,7 @@ export const GlobalProvider = ({children}) => {
     }
 
     const getExpenses = async () => {
-                    const id= localStorage.getItem('userid')
+            const id= localStorage.getItem('userid')
             console.log(id);
           const response = await axios.get(`${BASE_URL}get-expenses?userid=${id}`);
         setExpenses(response.data)

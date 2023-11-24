@@ -121,8 +121,6 @@ function IncomeItem({
             {/* Add a modal for editing */}
             {isEditing && (
                 <Modal onClose={handleEditClose}>
-                    {/* Include your edit form inside the modal */}
-                    {/* Use the data of the current income for pre-filling the form */}
                     <EditForm
                         id={id}
                         title={title}

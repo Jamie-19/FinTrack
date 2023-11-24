@@ -4,7 +4,7 @@ import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 import { useGlobalContext } from '../../context/globalContext';
 import Button from '../Button/Button';
-import { plus, edit } from '../../utils/Icons';
+import { edit } from '../../utils/Icons';
 import { useEffect } from 'react';
 
 function EditForm({
@@ -152,6 +152,9 @@ flex-direction: column;
 gap: 2rem;
 margin-right: 2rem;
 background: white;
+position: relative;
+padding: 2rem;
+z-index: 10;
 input, textarea, select{
     font-family: inherit;
     font-size: inherit;

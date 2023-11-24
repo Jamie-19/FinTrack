@@ -13,7 +13,7 @@ function Expenses() {
 
     useEffect(() =>{
         getExpenses()
-    },)
+    },[getExpenses])
     return (
         <ExpenseStyled>
              <div className='flexj'>

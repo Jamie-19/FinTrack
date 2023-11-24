@@ -7,13 +7,15 @@ import { indian } from '../../utils/Icons';
 import IncomeItem from '../IncomeItem/IncomeItem';
 import Navigation from '../Navigation/Navigation';
 
+
+
 function Income() {
     const {incomes, getIncomes, deleteIncome, totalIncome} = useGlobalContext()
     const [active, setActive] = useState(1)
 
     useEffect(() =>{
         getIncomes()
-    },)
+    },[getIncomes   ])
 
     return (
         <IncomeStyled>
