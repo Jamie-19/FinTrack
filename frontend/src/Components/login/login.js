@@ -1,6 +1,6 @@
 // src/Components/Login/Login.js
 import React, { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate} from 'react-router-dom';
 import styled from 'styled-components';
 import { useGlobalContext } from '../../context/globalContext';
 
@@ -115,7 +115,6 @@ const Body = styled.body`
   flex-direction: column;
   font-family: "Montserrat", sans-serif;
   height: 100vh;
-  margin: -20px 0 50px;
   background-image: url('/Leonardo_Diffusion_XL_Generate_a_visually_stunning_and_futuris_2.jpg'); 
   background-blend-mode: overlay;
   background-size: cover;
