@@ -2,10 +2,17 @@ const { addExpense, getExpense, editExpense ,deleteExpense } = require('../contr
 const { addIncome, getIncomes,editIncome ,deleteIncome } = require('../controllers/income');
 const { register,login } = require('../controllers/auth');
 const router = require('express').Router();
+const rateLimit = require('express-rate-limit');
 
+// Define rate limiter
+const limiter = rateLimit({
+    windowMs: 15 * 60 * 1000, // 15 minutes
+    max: 100 // limit each IP to 100 requests per windowMs
+});
 
+router.use(limiter); // Apply rate limiter to all routes
 
- router.post('/add-income', addIncome)
+router.post('/add-income', addIncome)
     .get('/get-incomes', getIncomes)
     .put('/edit-income/:id', editIncome)
     .delete('/delete-income/:id', deleteIncome)
@@ -16,4 +23,4 @@ const router = require('express').Router();
     .post('/register', register)
     .post('/login', login)
 
-module.exports = router
+module.exports = router;
